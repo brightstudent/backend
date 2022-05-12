@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-</head>
+<%- include('partials/head'); %>
+
 <body>
     <%- include('partials/header'); %>
     
-    <article id="star">
+    <article id="option">
         <figure>
             <img src="<%= restaurants[0].picture[0] %>" alt="">
             <img src="<%= restaurants[0].picture[1] %>" alt="">
+            <img src="<%= restaurants[0].picture[0] %>" alt="">
+            <img src="<%= restaurants[0].picture[1] %>" alt="">
+            <img src="<%= restaurants[0].picture[0] %>" alt="">
+            <img src="<%= restaurants[0].picture[1] %>" alt="">
         </figure>
-        <!-- <section>
-            <h1 class="res-name">
+        <section>
+            <h1 class="name">
                 <%= restaurants[0].name %>
             </h1>
-            <span class="res-location">
+            <span class="location">
                 <%= restaurants[0].location %>
             </span>
-        </section> -->
+        </section>
     </article>
 
     <%- include('partials/footer'); %>
+
+    <script src="/drag"></script>
 </body>
+
 </html>

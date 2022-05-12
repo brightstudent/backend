@@ -130,7 +130,7 @@ footer button:last-child:hover {
   background-color: var(--prime-clr-hover);
 }
 
-#star {
+#option {
   position: relative;
   /* border: 2px solid; */
   border-radius: 0.75rem;
@@ -139,29 +139,27 @@ footer button:last-child:hover {
   margin: 1.5rem 0;
 }
 
-#star figure {
+#option figure {
   width: 100%;
   height: 100%;
   border-radius: 12px;
   display: flex;
-  /* flex-direction: row; */
-  overflow-x: scroll;
-  justify-content: start;
+  flex-direction: row;
   align-items: center;
-  overflow-y: hidden;
-  scroll-snap-align: center;
+  justify-content: start;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
-#star img {
-  flex: none;
-  position: relative;
+#option img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  scroll-snap-align: center;
 }
 
-#star section {
+#option section {
   padding: 1rem;
   width: 100%;
   height: 25%;
