@@ -161,6 +161,7 @@ footer button:last-child:hover {
   height: 100%;
   object-fit: cover;
   scroll-snap-align: center;
+  user-select: none;
 }
 
 #option section {
@@ -187,4 +188,8 @@ footer button:last-child:hover {
 
 #option span {
   font-size: var(--body-txt-size-s);
+}
+
+.active {
+  cursor: grabbing;
 }
