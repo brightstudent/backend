@@ -23,5 +23,5 @@ app.listen(port, () => {
 
 
 app.use((req, res) => {
-  res.status(404).render('pages/404');
+  res.status(404).render('/404');
 })
