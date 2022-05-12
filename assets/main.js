@@ -22,6 +22,7 @@ function init(restaurants) {
         img.src = pic;
         img.draggable = false;
         parent.append(img);
+        parent.scrollLeft = 0;
       });
       optionName.textContent = restaurant.name;
       optionName.href = "/restaurants/" + restaurant.slug;
