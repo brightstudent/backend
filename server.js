@@ -15,13 +15,12 @@ app.get('/', (req, res) => {
 
 app.get('/favorites', (req, res) => {
   res.render('favorites')
+}
+)
+app.get('/detail-page', (req, res) => {
+  res.render('detail-page')
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
-})
-
-
-app.use((req, res) => {
-  res.status(404).render('/404');
 })
