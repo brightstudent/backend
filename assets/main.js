@@ -3,6 +3,9 @@ function init(restaurants) {
   const optionName = document.querySelector("#option .name a");
   const optionLocation = document.querySelector("#option .location");
 
+  const rejectBtn = document.querySelector("#reject");
+  const saveBtn = document.querySelector("#save");
+
   let index = 0;
   function displayRestaurant(idx) {
     // If restaurant is set and not empty
@@ -13,25 +16,25 @@ function init(restaurants) {
         parent.removeChild(parent.firstChild);
       }
       // % modulo creates a loop for the array
-      const restaurant = restaurants[idx % restaurants.length]
+      const restaurant = restaurants[idx % restaurants.length];
       restaurant.picture.forEach((pic) => {
         const img = document.createElement("img");
         img.src = pic;
         img.draggable = false;
         parent.append(img);
       });
-      optionName.textContent = restaurant.name
-      optionName.href = '/restaurants/' + restaurant.slug
-      optionLocation.textContent = restaurant.location
+      optionName.textContent = restaurant.name;
+      optionName.href = "/restaurants/" + restaurant.slug;
+      optionLocation.textContent = restaurant.location;
     }
   }
   // displayRestaurant(index);
 
-  document.querySelector("#reject").addEventListener("click", () => {
+  rejectBtn.addEventListener("click", () => {
     displayRestaurant(++index);
   });
 
-  document.querySelector("#save").addEventListener("click", async () => {
+  saveBtn.addEventListener("click", async () => {
     // save fav on the server
     await fetch("/api/favorites", {
       method: "POST",
@@ -43,6 +46,8 @@ function init(restaurants) {
     displayRestaurant(++index);
   });
 }
+
+
 
 fetch("/api/restaurants")
   .then((res) => res.json())
