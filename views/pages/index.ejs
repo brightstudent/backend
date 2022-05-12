@@ -6,21 +6,23 @@
         <%- include('../partials/header'); %>
 
             <article id="option">
+                <button class="previous">back</button>
+                <button class="next"> next</button>
                 <figure id="images">
                     <!-- images worden main.js hierin gezet -->
                     <!-- main.js is toegevoegd aan ../partials/head -->
                     <!-- dummy plaatjes array beginnen bij [0] -->
                     <% restaurants[0].picture.forEach(function(pic){ %>
                         <img src="<%= pic %>" draggable="false">
-                    <% }) %>
-                </figure> 
+                        <% }) %>
+                </figure>
 
                 <section id="description">
-                        <h1 class="name">
-                            <a href="/restaurants/<%= restaurants[0].slug  %>"> 
-                                <%= restaurants[0].name %> 
-                            </a>
-                        </h1>
+                    <h1 class="name">
+                        <a href="/restaurants/<%= restaurants[0].slug  %>">
+                            <%= restaurants[0].name %>
+                        </a>
+                    </h1>
                     <span class="location">
                         <%= restaurants[0].location %>
                     </span>
@@ -31,4 +33,5 @@
 
                 <script src="/drag.js"></script>
     </body>
+
 </html>
