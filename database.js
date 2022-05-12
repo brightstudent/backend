@@ -2,7 +2,7 @@ const restaurants = [
   {
     picture: ["/static/pic2.jpg", "/static/pic3.jpg"],
     name: "Poke magic",
-    location: "2.5km",
+    location: "2.5 km",
     slug: 'poke-magic',
     menu: [
       {
@@ -15,7 +15,7 @@ const restaurants = [
   {
     picture: ["/static/pic4.jpg", "/static/pic5.jpg"],
     name: "BBQ Meat",
-    location: "3.1km",
+    location: "3.1 km",
     slug: 'bbq-meat'
   },
 ];
