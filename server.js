@@ -2,16 +2,7 @@ const express = require('express');
 const app = express()
 const port = 3000
 
-const restaurants = [
-  {
-  name: "Poke magic",
-  location: "2.5km"},  
-  {
-    name: "BBQ Meat",
-    location: "3.1km"
-  },
-];
-
+const restaurants = require('./database');
 
 app.use(express.static("assets"));
 
@@ -31,4 +22,6 @@ app.listen(port, () => {
 })
 
 
-
+app.use((req, res) => {
+  res.status(404).render('pages/404');
+})

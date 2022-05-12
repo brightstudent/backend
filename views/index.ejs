@@ -13,8 +13,11 @@
 <body>
     <%- include('partials/header'); %>
     
-    <article class="carousel">
-        <img src="/static/pic2.jpg" alt="">
+    <article id="star">
+        <figure>
+            <img src="<%= restaurants[0].picture[0] %>" alt="">
+            <img src="<%= restaurants[0].picture[1] %>" alt="">
+        </figure>
         <section>
             <h1 class="res-name">
                 <%= restaurants[0].name %>
