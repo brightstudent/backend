@@ -175,9 +175,11 @@ footer button:last-child:hover {
   left: 0;
   background-image: linear-gradient(to top, black, transparent);
   display: flex;
+  gap: 0.25rem;
   flex-direction: column;
   justify-content: flex-end;
   color: var(--base-clr);
+  pointer-events: none;
 }
 
 #option h1 a{
@@ -185,6 +187,7 @@ footer button:last-child:hover {
   color: var(--base-clr);
   font-size: var(--heading1-txt-size);
   font-weight: 300;
+  pointer-events: visible;
 }
 
 #option span {
