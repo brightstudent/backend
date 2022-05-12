@@ -62,7 +62,7 @@ header {
   /* border: 2px dashed; */
 }
 
-header #icons  {
+header #icons {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -84,7 +84,7 @@ header #icons button {
   background-color: var(--third-clr);
   color: var(--base-clr);
   border-radius: 99rem;
-  padding: 0 .75rem;
+  padding: 0 0.75rem;
   height: 2.5rem;
   display: flex;
   justify-content: center;
@@ -182,7 +182,7 @@ footer button:last-child:hover {
   pointer-events: none;
 }
 
-#option h1 a{
+#option h1 a {
   text-decoration: none;
   color: var(--base-clr);
   font-size: var(--heading1-txt-size);
@@ -192,6 +192,19 @@ footer button:last-child:hover {
 
 #option span {
   font-size: var(--body-txt-size-s);
+}
+
+#option > button {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+}
+#option > button:nth-child(1) {
+  left: 0;
+}
+#option > button:nth-child(2) {
+  right: 0;
 }
 
 .active {
