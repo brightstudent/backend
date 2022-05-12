@@ -1,7 +1,12 @@
 const express = require('express');
-
 const app = express()
 const port = 3000
+
+const restaurants = {
+  name: "Poke magic",
+  location: "2.5km"
+}
+
 
 app.use(express.static("assets"));
 
