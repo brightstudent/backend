@@ -11,9 +11,9 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World! This is Zaid. How are you doing?')
-// })
+app.get('/favorites', (req, res) => {
+  res.render('favorites')
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
