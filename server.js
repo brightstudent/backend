@@ -11,11 +11,12 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   // console.log(restaurants)
-  res.render("pages/index", { restaurants });
+  res.render("pages/index", { restaurants, homepage: true } );
 });
 
 app.get("/favorites", (req, res) => {
-  res.render("pages/favorites", { restaurants: Object.values(favs) });
+  res.render("pages/favorites", { restaurants: Object.values(favs), homepage: false });
+; 
 });
 
 app.get("/restaurants/:slug", (req, res) => {

@@ -37,5 +37,5 @@ nextBtn.addEventListener("click", () => {
   console.log('next')
 });
 previousBtn.addEventListener("click", () => {
-  slider.scrollLeft -= 300;
+  slider.scrollLeft -= 200;
 });

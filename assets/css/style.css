@@ -143,7 +143,7 @@ footer button:last-child:hover {
   position: relative;
   /* border: 2px solid; */
   border-radius: 0.75rem;
-  overflow: hidden;
+    overflow: hidden;
   height: 80%;
   margin: 1.5rem 0;
 }
@@ -204,6 +204,7 @@ footer button:last-child:hover {
   width: 50%;
   height: 100%;
   opacity: 0;
+  /* pointer-events: none; */
 }
 #option > button:nth-child(1) {
   left: 0;
@@ -214,6 +215,22 @@ footer button:last-child:hover {
 
 .active {
   cursor: grabbing;
+}
+
+#pnf img {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  transform: scale(0.8);
+  object-fit: cover;
+}
+
+#pnf h1 {
+  border-left: 0.5rem solid var(--prime-clr);
+  padding-left: 1rem;
+  color: var(--third-clr);
+  font-size: 250%;
+  font-weight: 600;
+  line-height: 105%;
 }
 
 @media (max-width: 414px) {
