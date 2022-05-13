@@ -32,10 +32,16 @@ slider.addEventListener("mousemove", (e) => {
   console.log(walk);
 });
 
+window.addEventListener('load', () => {
+  nextBtn.classList.add('jsactive')
+  previousBtn.classList.add('jsactive')
+})
+
 nextBtn.addEventListener("click", () => {
   slider.scrollLeft += 200;
   console.log('next')
 });
 previousBtn.addEventListener("click", () => {
   slider.scrollLeft -= 200;
+  console.log('back')
 });
