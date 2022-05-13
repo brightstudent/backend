@@ -2,12 +2,34 @@
 <html lang="en">
 <%- include('../partials/head'); %>
 
-<body>
+    <body>
+        <%- include('../partials/header'); %>
+        <article class="titel">
+            <h1>Favorites</h1>
+            <div>
+                <span><%= restaurants.length %> </span>
+                <span>spots</span>
+            </div>
+        </article>
+            <main id="saved">
+                <% restaurants.forEach(function(restaurant){ %>
+                    <article>
+                        <figure>
+                            <img src="<%= restaurant.picture[0] %>" alt="">
+                        </figure>
+                        <section>
+                            <h2>
+                                <%= restaurant.name %>
+                            </h2>
+                            <span>
+                                <%= restaurant.location %>
+                            </span>
+                        </section>
+                    </article>
+                    <% }) %>
 
-    <% restaurants.forEach(function(restaurant){ %>
-        <h1><%= restaurant.name %></h1>
-    <% }) %>
+            </main>
 
-    <%- include('../partials/header'); %>
-</body>
+    </body>
+
 </html>
