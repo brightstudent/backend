@@ -24,6 +24,7 @@ html {
   --second-clr-hover: #dfe9f4;
   --third-clr: #162638;
   --base-clr: white;
+  --bg-clr: white;
   /* Fonts */
   --myfont: "Inter";
   --button-txt-size: 14px;
@@ -39,8 +40,8 @@ body {
   height: 95vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: var(--base-clr);
+  /* justify-content: space-between; */
+  background-color: var(--bg-clr);
   border-radius: 1.5rem;
   position: absolute;
   top: 50%;
@@ -107,6 +108,7 @@ footer {
   gap: 0.75rem;
   height: 3.75rem;
   min-height: 3rem;
+  margin-top: auto;
 }
 
 footer button {
@@ -119,6 +121,7 @@ footer button {
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  transition: .3s;
 }
 
 footer button:first-child {
@@ -139,11 +142,21 @@ footer button:last-child:hover {
   background-color: var(--prime-clr-hover);
 }
 
+footer button:last-child svg {
+  transition: .5s;
+  fill: transparent;
+}
+
+footer button:last-child:hover svg {
+  fill: var(--base-clr);
+  transform: translateX(-5%) scale(1.2);
+}
+
 #option {
   position: relative;
   /* border: 2px solid; */
   border-radius: 0.75rem;
-    overflow: hidden;
+  overflow: hidden;
   height: 80%;
   margin: 1.5rem 0;
 }
@@ -204,8 +217,13 @@ footer button:last-child:hover {
   width: 50%;
   height: 100%;
   opacity: 0;
-  /* pointer-events: none; */
+  pointer-events: none;
 }
+
+#option > button.jsactive {
+  pointer-events: auto;
+}
+
 #option > button:nth-child(1) {
   left: 0;
 }
@@ -233,6 +251,48 @@ footer button:last-child:hover {
   line-height: 105%;
 }
 
+#saved {
+  display: grid;
+  /* margin-top: 2rem; */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 0.75rem;
+  width: 100%;
+}
+
+#saved article {
+  aspect-ratio: 9/16;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#saved figure {
+  overflow: hidden;
+  width: 100%;
+  height: 75%;
+  border-radius: 0.5rem;
+}
+
+#saved img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 0.75rem;
+}
+
+.menu > div {
+  width: 100%;
+  height: 200px;
+  border-radius: 0.5rem;
+  background-color: #f1f1f1;
+}
+
 @media (max-width: 414px) {
   body {
     width: 100%;
@@ -241,3 +301,46 @@ footer button:last-child:hover {
     border-radius: 0;
   }
 }
+
+.titel {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  /* border: #db3230 solid; */
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.titel h1 {
+  font-size: var(--heading1-txt-size);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --prime-clr: #db3230;
+    --prime-clr-hover: #ca1d1a;
+    --second-clr: #ecf1f7;
+    --second-clr-hover: #dfe9f4;
+    --third-clr: #162638;
+    --base-clr: white;
+    --bg-clr: white;
+    --bg-clr: white;
+  }
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    --prime-clr: #db3230;
+    --prime-clr-hover: #ca1d1a;
+    --second-clr: #ecf1f7;
+    --second-clr-hover: #dfe9f4;
+    --third-clr: #162638;
+    --base-clr: white;
+    --bg-clr: rgb(18, 18, 20);
+  }
+
+  #favoritesBtn {
+    background-color: var(--second-clr);
+    color: var(--third-clr);
+  }
+} */
