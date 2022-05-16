@@ -1,8 +1,20 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 
+// in dotenv bestand gaat alle gevoelige informatie zoals users. zo worden afgeschermd
 require('dotenv').config()
+// mongoDB / my database ophalen
+var mongo = require('mongodb');
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASS + '@' + process.env.DB_HOST + '/' + process.env.DB_NAME + '?retryWrites=true&w=majority'
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  console.log('mongoDB On')
+  client.close();
+});
 
 const restaurants = require("./database");
 const favs = {};
@@ -37,8 +49,8 @@ app.post("/api/favorites", (req, res) => {
   res.status(204).send();
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}`);
 });
 
 app.use(function (req, res, next) {
