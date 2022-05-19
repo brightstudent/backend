@@ -23,3 +23,13 @@
         </svg>
         Favorites</a>
 </header>
+
+<script type="text/javascript">
+  const favPageLink = document.querySelector('#favoritesBtn')
+  if (favPageLink) {
+    favPageLink.addEventListener('click', (e) => {
+      e.preventDefault()
+      location.href = e.target.href + '?email=' + localStorage.getItem('email') 
+    })
+  }
+</script>

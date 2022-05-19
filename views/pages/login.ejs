@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head'); %>
+
+  <body>
+    <form action="post">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="" placeholder="Email">
+      <input type="submit" value="Let's start!">
+    </form>
+  </body>
+
+  <script type="text/javascript">
+    document.querySelector('input[type="submit"]').addEventListener('click', (e) => {
+      e.preventDefault()
+      let email = document.querySelector('input[type=email]').value;
+      localStorage.setItem('email', email)
+    })
+    
+  </script>
+
+</html>

@@ -3,7 +3,11 @@
 <%- include('../partials/head'); %>
 
     <body>
+        <% if (homepage) { %>
         <%- include('../partials/header'); %>
+        <% } else { %>
+            <a href="/" >Terug</a>
+        <% } %>
         <article class="titel">
             <h1>Favorites</h1>
             <div>
@@ -16,7 +20,7 @@
                 <% restaurants.forEach(function(restaurant){ %>
                     <article>
                         <figure>
-                            <img src="<%= restaurant.picture[0] %>" alt="">
+                            <img src="<%= restaurant.pictures[0] %>" alt="">
                         </figure>
                         <section>
                             <h2>

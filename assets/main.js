@@ -17,7 +17,7 @@ function init(restaurants) {
       }
       // % modulo creates a loop for the array
       const restaurant = restaurants[idx % restaurants.length];
-      restaurant.picture.forEach((pic) => {
+      restaurant.pictures.forEach((pic) => {
         const img = document.createElement("img");
         img.src = pic;
         img.draggable = false;
@@ -37,17 +37,23 @@ function init(restaurants) {
 
   // prints the data
   saveBtn.addEventListener("click", async () => {
+    const request = {
+      favorite: restaurants[index % restaurants.length]._id, 
+      user: localStorage.getItem('email')
+    }
     // save fav on the server
     await fetch("/api/favorites", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(restaurants[index % restaurants.length]),
+      body: JSON.stringify(request),
     });
     displayRestaurant(++index);
   });
 }
+
+
 
 // gets data from "database"
 fetch("/api/restaurants")

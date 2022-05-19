@@ -12,7 +12,7 @@
                     <!-- images worden main.js hierin gezet -->
                     <!-- main.js is toegevoegd aan ../partials/head -->
                     <!-- dummy plaatjes array beginnen bij [0] -->
-                    <% restaurants[0].picture.forEach(function(pic){ %>
+                    <% restaurants[0].pictures.forEach(function(pic){ %>
                         <img src="<%= pic %>" draggable="false">
                         <% }) %>
                 </figure>
@@ -30,7 +30,7 @@
             </main>
 
             <%- include('../partials/footer'); %>
-
+                <script src="/main.js"></script>
                 <script src="/drag.js"></script>
     </body>
 

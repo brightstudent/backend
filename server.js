@@ -1,4 +1,5 @@
 const express = require("express");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
 
 // in dotenv bestand gaat alle gevoelige informatie zoals users. zo worden afgeschermd
@@ -6,77 +7,78 @@ require("dotenv").config();
 
 const restaurants = require("./database");
 const favs = {};
-// mongoDB / my database ophalen
-const mongo = require("mongodb");
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri =
-  "mongodb+srv://" +
-  process.env.DB_USERNAME +
-  ":" +
-  process.env.DB_PASS +
-  "@" +
-  process.env.DB_HOST +
-  "/" +
-  process.env.DB_NAME +
-  "?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
-});
 
-let db = null;
+// variable without value are `undefined`, which somewhat equal (not equivalent) to `null`
+// null == undefined : True
+// null === undefined : False
+let db;
 
 app.use(express.json());
 app.use(express.static("assets"));
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  // console.log(restaurants)
+app.get("/", async (req, res) => {
+  const restaurants = await db.collection("restaurants").find({}, {}).toArray();
   res.render("pages/index", { restaurants, homepage: true });
 });
 
-app.get("/favorites", (req, res) => {
+app.get("/login", (req, res) => {
+  res.render("pages/login", {});
+});
+
+app.get("/favorites", async (req, res) => {
+  let favs = await db.collection('favorites').find({ user: req.query.email}, {projection: {favorite: 1}}).toArray()
+  favs = favs.map(e => ObjectId(e.favorite))
+  const restaurants = await db.collection("restaurants").find({_id: {$in: favs}}).toArray();
   res.render("pages/favorites", {
-    restaurants: Object.values(favs),
+    restaurants,
     homepage: false,
   });
 });
 
-app.get("/restaurants/:slug", (req, res) => {
-  const result = restaurants.find((r) => r.slug == req.params.slug);
+app.get("/restaurants/:slug", async (req, res) => {
+  // const result = restaurants.find((r) => r.slug == req.params.slug);
+  const result = await db
+    .collection("restaurants")
+    .findOne({ slug: req.params.slug }, {});
   res.render("pages/detail-page", { restaurant: result });
 });
 
-app.get("/api/restaurants", (req, res) => {
-  res.json(restaurants);
+app.get("/api/restaurants", async (req, res) => {
+  // this is how i get my data from a certain collection from db
+  const places = await db.collection("restaurants").find({}, {}).toArray();
+  res.json(places);
 });
 
-app.post("/api/favorites", (req, res) => {
-  // TODO: save favorites
-  const restaurant = req.body;
-  favs[restaurant.name] = restaurant;
+app.post("/api/favorites", async (req, res) => {
+  const saveRequest = req.body;
+  try {
+    await db.collection("favorites").insert(saveRequest);
+  } catch (e) {
+    console.log(e)
+  }
   res.status(204).send();
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}`);
-  connectDB().then(console.log(connectDB));
-});
-
-app.use(function (req, res, next) {
-  // res.status(404).send(`that doesn't exist`);
-  res.render("pages/404");
-});
-
 async function connectDB() {
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
   try {
+    // mongoDB / my database ophalen
+    const uri =
+      "mongodb+srv://" +
+      process.env.DB_USERNAME +
+      ":" +
+      process.env.DB_PASS +
+      "@" +
+      process.env.DB_HOST +
+      "/" +
+      process.env.DB_NAME +
+      "?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverApi: ServerApiVersion.v1,
+    });
     await client.connect();
     db = client.db(process.env.DB_NAME);
   } catch (error) {
@@ -84,9 +86,20 @@ async function connectDB() {
   }
 }
 
-app.get("/", async (req, res) => {
-  const restaurants = await db.collection("restaurants").find({},{}).toArray();
-  const name = (restaurants)
-  res.render ('restaurants')
-})
+// Define as last route
+app.use(function (req, res, next) {
+  // res.status(404).send(`that doesn't exist`);
+  res.render("pages/404");
+});
 
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}`);
+  connectDB().then(console.log(connectDB));
+});
+
+
+// 1. dynamic back button based on page location / slug
+// 2. data is voor iedereen. dit moet users worden. als ik like kun jij nog steeds disliken
+// 3. een formulier maken om een nieuwe user te aan te maken.
+
+// input: wie ben jij? invullen daarvan slaat data op in database = new user.
