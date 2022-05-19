@@ -35,6 +35,7 @@ function init(restaurants) {
     displayRestaurant(++index);
   });
 
+  // prints the data
   saveBtn.addEventListener("click", async () => {
     // save fav on the server
     await fetch("/api/favorites", {
@@ -48,8 +49,7 @@ function init(restaurants) {
   });
 }
 
-
-
+// gets data from "database"
 fetch("/api/restaurants")
   .then((res) => res.json())
   .then(init);
