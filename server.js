@@ -28,9 +28,15 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/favorites", async (req, res) => {
-  let favs = await db.collection('favorites').find({ user: req.query.email}, {projection: {favorite: 1}}).toArray()
-  favs = favs.map(e => ObjectId(e.favorite))
-  const restaurants = await db.collection("restaurants").find({_id: {$in: favs}}).toArray();
+  let favs = await db
+    .collection("favorites")
+    .find({ user: req.query.email }, { projection: { favorite: 1 } })
+    .toArray();
+  favs = favs.map((e) => ObjectId(e.favorite));
+  const restaurants = await db
+    .collection("restaurants")
+    .find({ _id: { $in: favs } })
+    .toArray();
   res.render("pages/favorites", {
     restaurants,
     homepage: false,
@@ -56,7 +62,7 @@ app.post("/api/favorites", async (req, res) => {
   try {
     await db.collection("favorites").insert(saveRequest);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
   res.status(204).send();
 });
@@ -96,7 +102,6 @@ app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`);
   connectDB().then(console.log(connectDB));
 });
-
 
 // 1. dynamic back button based on page location / slug
 // 2. data is voor iedereen. dit moet users worden. als ik like kun jij nog steeds disliken
