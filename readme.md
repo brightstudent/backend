@@ -20,3 +20,23 @@ $ git --version
 If you don’t have it installed already, it will prompt you to install it.
 
 If you're on a Windows machine, visit <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git> for an installation guide.
+
+This app comes with a bunch of npm packages, like expressjs. Which is the framework that the app is build on. Without it the pages won't load. So the next step is to install NPM. This can be done by typing the following command in your terminal: 
+
+```
+$ npm install
+```
+
+And now the moment of truth. To run the app, just type this commant in your terminal: 
+
+```
+$ npm start
+```
+
+Congrats, you are all set! The only thing you need to do now is, to open up your browser and type <localhost:3000>. Enoy the app!
+
+## Autor 
+Zaid El Boustani
+## License 
+Copyright © 2022.
+This project is [MIT](https://choosealicense.com/licenses/mit/#suggest-this-license) licensed.
