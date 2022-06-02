@@ -19,4 +19,4 @@ $ git --version
 ```
 If you don’t have it installed already, it will prompt you to install it.
 
-If you're on a Windows machine, visit <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git> for an install guide.
+If you're on a Windows machine, visit <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git> for an installation guide.
