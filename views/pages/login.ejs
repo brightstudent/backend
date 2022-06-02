@@ -2,10 +2,22 @@
 <html lang="en">
 <%- include('../partials/head'); %>
 
-  <body>
-    <form action="post">
+  <body id="login">
+<!-- 
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2510&q=80"
+        alt="">
+    </figure> -->
+
+    <article>
+      <h1>Login</h1>
+      <p>If you wish to save your favorite restaurants, please enter your email below</p>
+    </article>
+
+    <form method="post">
       <label for="email">Email</label>
-      <input type="email" name="email" id="" placeholder="Email">
+      <input type="email" name="email" id="" placeholder="example@mail.com">
       <input type="submit" value="Let's start!">
     </form>
   </body>
@@ -15,8 +27,9 @@
       e.preventDefault()
       let email = document.querySelector('input[type=email]').value;
       localStorage.setItem('email', email)
+      window.location.href = "/";
     })
-    
+
   </script>
 
 </html>
