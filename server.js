@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
 
 app.get("/login", async (req, res) => {
   const api = unsplash.createApi({
-    accessKey: "HXAdqRjgl_re3yeCDDNG1--vKqR-rVCEybW9ecKDHRk",
+    accessKey: process.env.UNSPLASH_KEY,
     fetch,
   });
   const splashResponse = await api.search.getPhotos({query: 'food', page: 1, perPage: 10});
