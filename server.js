@@ -1,6 +1,8 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
+const unsplash = require("unsplash-js");
+const fetch = require("node-fetch");
 
 // in dotenv bestand gaat alle gevoelige informatie zoals users. zo worden afgeschermd
 require("dotenv").config();
@@ -20,9 +22,19 @@ app.get("/", async (req, res) => {
   res.render("pages/index", { restaurants, homepage: true });
 });
 
-app.get("/login", (req, res) => {
-  res.render("pages/login", {});
+app.get("/login", async (req, res) => {
+  const api = unsplash.createApi({
+    accessKey: "HXAdqRjgl_re3yeCDDNG1--vKqR-rVCEybW9ecKDHRk",
+    fetch,
+  });
+  const splashResponse = await api.search.getPhotos({query: 'food', page: 1, perPage: 10});
+  const pics = splashResponse.response.results
+  const randomIndex = Math.floor(Math.random() * 43) % pics.length
+  res.render("pages/login", 
+    {backgroundImage: pics[randomIndex].urls.regular}
+  );
 });
+
 
 app.get("/favorites", async (req, res) => {
   let favs = await db
