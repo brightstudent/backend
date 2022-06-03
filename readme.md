@@ -35,8 +35,9 @@ $ npm start
 
 Congrats, you are all set! The only thing you need to do now is, to open up your browser and type <localhost:3000>. Enoy the app!
 
-## Autor 
+## Author
 Zaid El Boustani
 ## License 
 Copyright © 2022.
+
 This project is [MIT](https://choosealicense.com/licenses/mit/#suggest-this-license) licensed.
