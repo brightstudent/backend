@@ -5,9 +5,6 @@ const app = express();
 // in dotenv bestand gaat alle gevoelige informatie zoals users. zo worden afgeschermd
 require("dotenv").config();
 
-const restaurants = require("./database");
-const favs = {};
-
 // variable without value are `undefined`, which somewhat equal (not equivalent) to `null`
 // null == undefined : True
 // null === undefined : False
