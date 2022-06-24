@@ -38,7 +38,7 @@ function init(restaurants) {
   // prints the data
   saveBtn.addEventListener("click", async () => {
     const request = {
-      favorite: restaurants[index % restaurants.length]._id, 
+      favorite: restaurants[index % restaurants.length]._id,
       user: localStorage.getItem('email')
     }
     // save fav on the server

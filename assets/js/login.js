@@ -1,7 +1,7 @@
 
 const startBtn = document.querySelector('input[type="submit"]');
 
-function saveEmail (e) {
+function saveEmail(e) {
   e.preventDefault()
   let email = document.querySelector('input[type=email]').value;
   localStorage.setItem('email', email)
