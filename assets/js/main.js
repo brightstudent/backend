@@ -53,8 +53,6 @@ function init(restaurants) {
   });
 }
 
-
-
 // gets data from "database"
 fetch("/api/restaurants")
   .then((res) => res.json())
