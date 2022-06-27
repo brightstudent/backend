@@ -274,6 +274,25 @@ footer button:last-child:hover svg {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  /* border: 2px dashed red; */
+  position: relative;
+}
+
+#dislike {
+  all: initial;
+  z-index: 999;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+}
+
+#dislike svg path {
+  fill: var(--prime-clr);
+}
+
+#dislike:hover svg path {
+  fill: var(--prime-clr-hover);
 }
 
 #saved figure {
