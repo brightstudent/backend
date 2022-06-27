@@ -8,13 +8,14 @@
             <main id="option">
                 <button class="previous">back</button>
                 <button class="next"> next</button>
+                <% if (restaurants.length) { %> 
                 <figure id="images">
                     <!-- images worden main.js hierin gezet -->
                     <!-- main.js is toegevoegd aan ../partials/head -->
                     <!-- dummy plaatjes array beginnen bij [0] -->
                     <% restaurants[0].pictures.forEach(function(pic){ %>
                         <img src="<%= pic %>" draggable="false">
-                        <% }) %>
+                    <% }) %>
                 </figure>
 
                 <section id="description">
@@ -27,6 +28,9 @@
                         <%= restaurants[0].location %>
                     </span>
                 </section>
+                <% } else { %> 
+                    Nothing to see here folks!
+                <% } %>
             </main>
 
             <%- include('../partials/footer'); %>

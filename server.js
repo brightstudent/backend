@@ -18,38 +18,58 @@ app.use(express.static("assets"));
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res) => {
-	const restaurants = await db.collection("restaurants").find({}, {}).toArray();
+	const restaurants = await db.collection("restaurants")
+	.find({favored: false}, {})
+	.toArray();
 	res.render("pages/index", { restaurants, homepage: true });
 });
 
-app.get("/login", async (req, res) => {
-	const api = unsplash.createApi({
-		accessKey: process.env.UNSPLASH_KEY,
-		fetch,
-	});
-	const splashResponse = await api.search.getPhotos({query: "food", page: 1, perPage: 10});
-	const pics = splashResponse.response.results;
-	const randomIndex = Math.floor(Math.random() * 43) % pics.length;
-	res.render("pages/login", 
-		{backgroundImage: pics[randomIndex].urls.regular}
-	);
-});
-
-
 app.get("/favorites", async (req, res) => {
-	let favs = await db
-		.collection("favorites")
-		.find({ user: req.query.email }, { projection: { favorite: 1 } })
-		.toArray();
-	favs = favs.map((e) => ObjectId(e.favorite));
 	const restaurants = await db
 		.collection("restaurants")
-		.find({ _id: { $in: favs } })
+		.find({ favored: true })
 		.toArray();
 	res.render("pages/favorites", {
 		restaurants,
 		homepage: false,
 	});
+});
+
+app.post("/api/favorites", async (req, res) => {
+	const saveRequest = req.body;	
+	try {
+		await db.collection("restaurants")
+			.updateOne(
+				{ _id: new ObjectId(saveRequest.favorite) },
+				{ $set: { favored: true } }
+			)
+	} catch (e) {
+		console.log(e);
+	}
+	res.status(204).send();
+});
+
+
+app.delete("/api/favorites/:id", async (req, res) => {
+	try {
+		await db.collection("restaurants")
+			.updateOne(
+				{ _id: new ObjectId(req.params.id) },
+				{ $set: { favored: false } }
+			)
+	} catch (e) {
+		console.log(e);
+	}
+	res.status(204).send();
+});
+
+
+app.get("/api/restaurants", async (req, res) => {
+	// this is how i get my data from a certain collection from db
+	const places = await db.collection("restaurants")
+		.find({favored: false}, {})
+		.toArray();
+	res.json(places);
 });
 
 app.get("/restaurants/:slug", async (req, res) => {
@@ -60,35 +80,19 @@ app.get("/restaurants/:slug", async (req, res) => {
 	res.render("pages/detail-page", { restaurant: result });
 });
 
-app.get("/api/restaurants", async (req, res) => {
-	// this is how i get my data from a certain collection from db
-	const places = await db.collection("restaurants").find({}, {}).toArray();
-	res.json(places);
-});
-
-app.post("/api/favorites", async (req, res) => {
-	const saveRequest = req.body;
-	try {
-		await db.collection("favorites").insert(saveRequest);
-	} catch (e) {
-		console.log(e);
-	}
-	res.status(204).send();
-});
-
 async function connectDB() {
 	try {
 		// mongoDB / my database ophalen
 		const uri =
-      "mongodb+srv://" +
-      process.env.DB_USERNAME +
-      ":" +
-      process.env.DB_PASS +
-      "@" +
-      process.env.DB_HOST +
-      "/" +
-      process.env.DB_NAME +
-      "?retryWrites=true&w=majority";
+			"mongodb+srv://" +
+			process.env.DB_USERNAME +
+			":" +
+			process.env.DB_PASS +
+			"@" +
+			process.env.DB_HOST +
+			"/" +
+			process.env.DB_NAME +
+			"?retryWrites=true&w=majority";
 		const client = new MongoClient(uri, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,

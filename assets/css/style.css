@@ -278,7 +278,7 @@ footer button:last-child:hover svg {
   position: relative;
 }
 
-#dislike {
+.dislike {
   all: initial;
   z-index: 999;
   position: absolute;
@@ -287,11 +287,11 @@ footer button:last-child:hover svg {
   cursor: pointer;
 }
 
-#dislike svg path {
+.dislike svg path {
   fill: var(--prime-clr);
 }
 
-#dislike:hover svg path {
+.dislike:hover svg path {
   fill: var(--prime-clr-hover);
 }
 

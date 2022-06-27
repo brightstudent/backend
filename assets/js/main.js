@@ -38,8 +38,7 @@ function init(restaurants) {
   // prints the data
   saveBtn.addEventListener("click", async () => {
     const request = {
-      favorite: restaurants[index % restaurants.length]._id,
-      user: localStorage.getItem('email')
+      favorite: restaurants[index % restaurants.length]._id
     }
     // save fav on the server
     await fetch("/api/favorites", {
@@ -49,7 +48,7 @@ function init(restaurants) {
       },
       body: JSON.stringify(request),
     });
-    displayRestaurant(++index);
+    document.location.reload();
   });
 }
 

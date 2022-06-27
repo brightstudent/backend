@@ -29,7 +29,7 @@
                                 <%= restaurant.location %>
                             </span>
                         </section>
-                        <button id="dislike">
+                        <button class="dislike" data-fav-id="<%= restaurant._id %>">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.5" />
@@ -43,6 +43,7 @@
                     <% }) %>
             </main>
 
+            <script src="/js/dislike.js"></script>
     </body>
 
 </html>

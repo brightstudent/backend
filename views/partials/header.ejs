@@ -1,6 +1,6 @@
 
 
-<% if (homepage) { %>
+<% if (locals.homepage) { %>
     <header>
         <section id="icons">
             <button id="settings">
@@ -41,7 +41,7 @@
   if (favPageLink) {
     favPageLink.addEventListener('click', (e) => {
       e.preventDefault()
-      location.href = e.target.href + '?email=' + localStorage.getItem('email') 
+      location.href = e.target.href
     })
   }
 
