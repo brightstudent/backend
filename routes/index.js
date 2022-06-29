@@ -1,6 +1,9 @@
 module.exports = (app, db) => {
-  app.use('/', require('../controllers/restaurants')(db))
-  app.use('/', require('../controllers/favorites')(db))
+  const restaurantRouter = require('../controllers/restaurants')(db)
+  const favoriteRouter = require('../controllers/favorites')(db)
+  
+  app.use('/', restaurantRouter)
+  app.use('/', favoriteRouter)
 
   // Define as last route
   app.use(function (req, res, next) {

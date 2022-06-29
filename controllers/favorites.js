@@ -2,8 +2,8 @@ const router = require('express').Router()
 const { ObjectId } = require("mongodb");
 
 module.exports = _db => {
-  db = _db
-  return router
+	db = _db
+	return router
 }
 
 router.get("/favorites", async (req, res) => {
@@ -18,7 +18,7 @@ router.get("/favorites", async (req, res) => {
 });
 
 router.post("/api/favorites", async (req, res) => {
-	const saveRequest = req.body;	
+	const saveRequest = req.body;
 	try {
 		await db.collection("restaurants")
 			.updateOne(
