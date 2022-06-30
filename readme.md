@@ -33,7 +33,15 @@ And now the moment of truth. To run the app, just type this commant in your term
 $ npm start
 ```
 
-Congrats, you are all set! The only thing you need to do now is, to open up your browser and type <localhost:3000>. Enoy the app!
+Congrats, you are almost set. 
+
+## Database connection
+
+> I use mongoDB as my database. So If you want to have a functional application, you'll have to create your own account. 
+
+If you already have an account, or if you created an accout. You will need to shield your information. Therefor you need to install [dotenv](https://www.npmjs.com/package/dotenv)
+
+
 
 ## Author
 Zaid El Boustani

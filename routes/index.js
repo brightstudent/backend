@@ -11,3 +11,4 @@ module.exports = (app, db) => {
     res.render("pages/404");
   });
 }
+
