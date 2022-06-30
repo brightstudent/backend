@@ -41,6 +41,23 @@ Congrats, you are almost set.
 
 If you already have an account, or if you created an accout. You will need to shield your information. Therefor you need to install [dotenv](https://www.npmjs.com/package/dotenv)
 
+### Install
+To install this package type the following in the command line. 
+
+```
+npm i dotenv --save
+```
+
+If the installation is succesful you can create a .env file with the following lines of code. 
+> I have already created a template for this file `(envexample)`. But you'll need to change the the name to `.env` en don't forget to fill in your own information.
+
+```
+PORT=3000
+DB_HOST= hostexample
+DB_NAME= name-example
+DB_USERNAME= username-example
+DB_PASS= password-example
+```
 
 
 ## Author
